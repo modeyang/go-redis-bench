@@ -1,0 +1,32 @@
+# !/bin/bash
+
+export GOPATH=$GOPATH:"`pwd`/../"
+
+run() {
+    go run main.go
+}
+
+build() {
+    go clean
+    go build -x main.go
+}
+
+get() {
+   godep get .
+   godep save
+}
+
+
+case "$1" in
+    run)
+    run;;
+
+    build)
+    build;;
+
+    get)
+    get;;
+
+    default)
+    echo "./control <run|build|get>"
+esac
